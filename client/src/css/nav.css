@@ -1,0 +1,30 @@
+nav {
+  background: black;
+  padding: 20px;
+}
+
+nav:after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+  float: right;
+}
+
+nav ul li {
+  display: inline-block;
+}
+
+nav a {
+  padding: 5px;
+  text-decoration: none;
+  color: grey;
+}
+
+nav a:hover {
+  color: white;
+}

@@ -1,0 +1,11 @@
+.App {
+  background: white;
+  width: 956px;
+  padding: 10px;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+h1 {
+  text-align: center;
+}
