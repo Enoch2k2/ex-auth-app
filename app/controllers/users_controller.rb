@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   # GET /users
   def index
     @users = User.all.limit(10)
-
+    # this is a comment
     render json: @users
   end
 
