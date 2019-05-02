@@ -4,7 +4,7 @@ import Home from './containers/Home';
 import Signup from './containers/Signup';
 import Login from './containers/Login';
 import NotFound from './containers/NotFound';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { HashRouter as Router, Switch, Route } from 'react-router-dom'
 import './App.css';
 
 class App extends Component {
