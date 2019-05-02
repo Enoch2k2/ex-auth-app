@@ -3,9 +3,9 @@
   def signup
     @user = User.new(user_params)
     if @user.save
-      render json: { success: true, token: generate_token(@user) }
+      render json: { success: true, token: Auth.generate_token(@user) }
     else
-      render json: { success: false }
+      render json: { success: false, errors: @user.errors.full_messages }
     end
   end
 

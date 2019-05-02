@@ -25,7 +25,7 @@ export const loadUsers = () => {
   }
 }
 
-export const signup = (user) => {
+export const signup = (user, history) => {
   return dispatch => {
     dispatch({type: "LOADING"});
     return fetch('/api/v1/signup', {
@@ -36,7 +36,16 @@ export const signup = (user) => {
       },
       body: JSON.stringify({ user })
     }).then(res => res.json())
-    .then(json => console.log(json));
+    .then(json => {
+        if(json.success) {
+          localStorage.setItem('token', json.token);
+          dispatch({ type: "SET_TOKEN" });
+          history.push("/");
+        } else {
+          throw new Error(json.errors)
+        }
+      }
+    ).catch(err => console.log(err))
   }
 }
 
