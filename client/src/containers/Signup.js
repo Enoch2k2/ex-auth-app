@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux';
+import { signup } from '../actions/users';
+import { authenticateToken } from '../actions/users';
 
-export class Signup extends Component {
+class Signup extends Component {
   constructor() {
     super();
 
@@ -11,17 +14,26 @@ export class Signup extends Component {
     }
   }
 
+  componentDidMount() {
+    if (authenticateToken()) { this.props.history.push("/") }
+  }
+
   onChange = e => {
     this.setState({
       [e.target.name]: e.target.value
     })
   }
 
+  onSubmit = e => {
+    e.preventDefault();
+    this.props.signup(this.state);
+  }
+
   render() {
     return (
       <div>
         <h1>Create Account</h1>
-        <form>
+        <form onSubmit={this.onSubmit}>
           <div className="form-group">
             <label for="name">Name: </label>
             <input type="text" name="name" id="name" value={this.state.name} onChange={this.onChange} />
@@ -41,4 +53,4 @@ export class Signup extends Component {
   }
 }
 
-export default Signup
+export default connect(null, {signup})(Signup);

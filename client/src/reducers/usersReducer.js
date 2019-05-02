@@ -11,6 +11,11 @@ export default (state={users: [], loading: false}, action) => {
         loading: false,
         users: action.payload
       }
+    case "SET_TOKEN":
+      return {
+        ...state,
+        loading: false
+      }
     default:
       return state;
   }

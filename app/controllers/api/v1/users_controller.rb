@@ -1,36 +1,17 @@
 class Api::V1::UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :destroy]
+  before_action :authorize_user!
 
   # GET /users
   def index
     @users = User.all.limit(10)
     # this is a comment
-    render json: @users
+    render json: { success: true, users: @users}
   end
 
   # GET /users/1
   def show
     render json: @user
-  end
-
-  # POST /users
-  def create
-    @user = User.new(user_params)
-
-    if @user.save
-      render json: @user, status: :created, location: @user
-    else
-      render json: @user.errors, status: :unprocessable_entity
-    end
-  end
-
-  # PATCH/PUT /users/1
-  def update
-    if @user.update(user_params)
-      render json: @user
-    else
-      render json: @user.errors, status: :unprocessable_entity
-    end
   end
 
   # DELETE /users/1
@@ -40,6 +21,12 @@ class Api::V1::UsersController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def authorize_user!
+      if !user_signed_in?
+        render json: { success: false, errors: 'You dont have access to view' }
+      end
+    end
+
     def set_user
       @user = User.find(params[:id])
     end

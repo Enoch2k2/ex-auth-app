@@ -36,6 +36,7 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # call 'binding.pry' in the code to stop execution and get a debugger console
   gem 'pry'
+  gem 'pry-remote'
 end
 
 group :development do
